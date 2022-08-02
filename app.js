@@ -17,11 +17,17 @@ requestAPI(options, function (err, body) {
             if (err) throw new Error(error);
             const APIData = JSON.parse(body).data;
 
-            // get the requied data then store them into execl sheets
+            // get specific data then store them into execl sheets
             const { productsDetails } = require('./productsDetails');
             productsDetails(APIData, function (err, products) {
                 if (err) return console.log(constants.error_message);
 
+
+                // append new sheet
+                const sheetsController = require('./wsController')
+                const workSheetName = `Page ${current_page}`;
+                sheetsController.appendWorksheet(filePath, products, workSheetName);
+                
             });
 
         })
