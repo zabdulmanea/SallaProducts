@@ -37,6 +37,7 @@ This task is guided by Development Department from San International Co.
 ## Getting Started
 1. Install NodeJS from [NodeJS Website](https://nodejs.org/en/)
 2. Clone/Download this repo: https://github.com/zabdulmanea/SallaProducts.git
+3. Create `.env` file contains `SALLA_ACCESS_TOKEN=<Your_Access_Token_Here>` inside root project 
 3. run `node app.js` in CLI
 4. `products.xlsx` file will be generated inside `output` folder
 
