@@ -1,7 +1,7 @@
 // generate Salla API Options
 const { generateOptions } = require('./util')
 const options = generateOptions('/products')
-
+const filePath = './output/products.xlsx';
 const { requestAPI } = require('./requestAPI');
 requestAPI(options, function (err, body) {
     if (err) throw new Error(error);
@@ -10,7 +10,12 @@ requestAPI(options, function (err, body) {
 
     // Go through all pages and get all products details
     for (let current_page = 1; current_page <= global.totalPages; current_page++) {
-        const filePath = './output/products.xlsx';
+
+        // initialize an execel file and delete any previous 
+        if (current_page == 1) {
+            const createFile = require('./createFile')
+            createFile(filePath)
+        }
 
         // get all the data of the current page
         const options = generateOptions(`/products?page=${current_page}`)
